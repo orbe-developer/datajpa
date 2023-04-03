@@ -27,7 +27,6 @@ public class Instructor {
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private Set<Course> courses = new HashSet<>();
 
-
     @Override
     public String toString() {
         return "Instructor{" +
