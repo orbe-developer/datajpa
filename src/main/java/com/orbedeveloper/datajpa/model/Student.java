@@ -38,6 +38,9 @@ public class Student {
     @PrimaryKeyJoinColumn
     private ContactInfo contactInfo;
 
+    @Transient
+    private int age;
+
     /*@ManyToMany
     @JoinTable(name = "student_course",
             joinColumns = @JoinColumn(name = "student_id"),
@@ -51,6 +54,13 @@ public class Student {
     // EmbeddedId
     @OneToMany(mappedBy = "student")
     private Set<StudentCourse> studentCourses = new HashSet<>();
+
+    public Student(String firstName, String lastName, LocalDate birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.age = birthDate.until(LocalDate.now()).getYears();
+    }
 
     @Override
     public String toString() {
